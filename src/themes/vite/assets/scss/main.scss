@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom prose styles for more compact lists */
+.prose ul > li,
+.prose ol > li {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* Reduce spacing for nested lists */
+.prose li > ul,
+.prose li > ol {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+html { scroll-behavior: smooth; }

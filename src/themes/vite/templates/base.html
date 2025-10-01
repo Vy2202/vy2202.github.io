@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="{% if lang %}{{ lang }}{% else %}en{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+
+    <!-- KaTex，用于渲染数学公式 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+      integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP"
+      crossorigin="anonymous"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"
+      integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+      integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+  </head>
+
+  <body>
+    <div>
+      <header>
+        <h1>
+          <a href="{{ config.base_url | safe }}">{{ config.title }}</a>
+        </h1>
+        <nav>
+          {% if config.extra.vite_menu %} {% for item in config.extra.vite_menu %}
+          <a href="{{ get_url(path=item.path) | safe }}">{{ item.name }}</a>
+          {% endfor %} {% endif %}
+        </nav>
+      </header>
+
+      <main>
+        <div>{% block content %}{% endblock content %}</div>
+        <div>{% block toc_sidebar %}{% endblock toc_sidebar %}</div>
+      </main>
+    </div>
+  </body>
+</html>
